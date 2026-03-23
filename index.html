@@ -3,159 +3,227 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vertrauensschüler Team</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Vertrauensschüler | Isarnwohld</title>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #00ffff;
+            --secondary-color: #ff00ff;
+            --accent-color: #ffff00;
+            --bg-dark: #0a0a0a;
+            --bg-medium: #1a1a1a;
+            --text-light: #ffffff;
+            --text-dim: #b0b0b0;
+            --card-bg: rgba(20, 20, 40, 0.8);
+            --border-glow: 1px solid rgba(0, 255, 255, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Exo 2', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Interaktiver Galaxy-Hintergrund Platzhalter */
+        #galaxy-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at center, #1b2735 0%, #090a0f 100%);
+        }
+
+        header {
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(255, 0, 255, 0.1));
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: var(--border-glow);
+            position: relative;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            text-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
+        }
+
+        header p {
+            color: var(--secondary-color);
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .header-image-container {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .header-image-container img {
+            width: 300px;
+            height: 185px;
+            object-fit: cover;
+            border-radius: 15px;
+            border: var(--border-glow);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+        }
+
+        nav {
+            background-color: rgba(26, 26, 26, 0.9);
+            padding: 15px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: var(--border-glow);
+            backdrop-filter: blur(5px);
+        }
+
+        nav a {
+            color: var(--text-light);
+            margin: 0 20px;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+            text-shadow: 0 0 10px var(--primary-color);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px 100px 20px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 15px;
+            border: var(--border-glow);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--secondary-color);
+        }
+
+        .card h2 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            border-left: 4px solid var(--secondary-color);
+            padding-left: 15px;
+        }
+
+        ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        li {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 8px 15px;
+            border-radius: 5px;
+            border-left: 2px solid var(--accent-color);
+        }
+
+        footer {
+            background-color: rgba(10, 10, 10, 0.9);
+            color: var(--text-dim);
+            text-align: center;
+            padding: 20px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            border-top: var(--border-glow);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Anpassung */
+        @media (max-width: 600px) {
+            header h1 { font-size: 2rem; }
+            nav a { margin: 0 10px; font-size: 0.8rem; }
+        }
+    </style>
 </head>
 <body>
 
-    <canvas id="galaxy-canvas"></canvas>
+<canvas id="galaxy-canvas"></canvas>
 
-    <div class="page-wrapper">
-        <header class="hero-section">
-            <div class="hero-content">
-                <h1 class="main-title">
-                    <span class="title-part">Vertrauens</span>
-                    <span class="title-part accent">schüler</span>
-                </h1>
-                <p class="hero-tagline">Deine Stimme. Unsere Mission. Gemeinsam Zukunft gestalten.</p>
-                <nav class="main-nav">
-                    <a href="#about" class="nav-link">Über Uns</a>
-                    <a href="#tasks" class="nav-link">Aufgaben</a>
-                    <a href="#contact" class="nav-link">Kontakt</a>
-                </nav>
-            </div>
-            <div class="scroll-indicator">
-                <span>Scrollen</span>
-                <div class="mouse-icon"></div>
-            </div>
-        </header>
+<header>
+    <h1>Vertrauensschüler</h1>
+    <p>Wir sind für euch da!</p>
+    <div class="header-image-container">
+        <img src="https://www.praelat-diehl-schule.de/wp-content/uploads/2021/12/sso-hp.jpg" alt="Team Bild">
+    </div>
+</header>
 
-        <main>
-            <section id="about" class="content-section">
-                <div class="section-header">
-                    <h2 class="section-title">Das Team</h2>
-                    <div class="title-line"></div>
-                </div>
-                
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="card-bg-effect"></div>
-                        <div class="card-icon-wrapper">
-                            <div class="card-icon">🤝</div>
-                        </div>
-                        <h3 class="card-title">Verbindung</h3>
-                        <p class="card-description">Wir sind die Brücke zwischen Schülern, Lehrern und der Schulleitung und sorgen für einen reibungslosen Dialog.</p>
-                        <button class="glow-button" onclick="toggleInfo(this)">
-                            <span>Mehr erfahren</span>
-                            <div class="button-bg"></div>
-                        </button>
-                        <div class="card-extra-info">
-                            <p>In regelmäßigen Treffen mit der Schulleitung bringen wir eure Anliegen direkt zur Sprache. Wir protokollieren wichtige Beschlüsse und sorgen für Transparenz, damit jeder weiß, was in der Schule entschieden wird. Unsere Tür ist immer offen für eure Vorschläge.</p>
-                        </div>
-                    </div>
-                    <div class="feature-card">
-                        <div class="card-bg-effect"></div>
-                        <div class="card-icon-wrapper">
-                            <div class="card-icon">🎯</div>
-                        </div>
-                        <h3 class="card-title">Engagement</h3>
-                        <p class="card-description">Mit Leidenschaft setzen wir uns aktiv für die Belange und Anliegen aller Schüler ein und kämpfen für eure Rechte.</p>
-                        <button class="glow-button" onclick="toggleInfo(this)">
-                            <span>Mehr erfahren</span>
-                            <div class="button-bg"></div>
-                        </button>
-                        <div class="card-extra-info">
-                            <p>Unser Engagement geht über das Normale hinaus. Wir organisieren Events, führen Umfragen durch und setzen uns für bessere Lernbedingungen ein. Ob es um die Mensa, Schulhofausstattung oder digitale Lernmittel geht – wir sind eure loudspeaker.</p>
-                        </div>
-                    </div>
-                    <div class="feature-card">
-                        <div class="card-bg-effect"></div>
-                        <div class="card-icon-wrapper">
-                            <div class="card-icon">💡</div>
-                        </div>
-                        <h3 class="card-title">Innovation</h3>
-                        <p class="card-description">Wir bringen frische, kreative Ideen ein, um unser Schulleben kontinuierlich zu verbessern und modern zu gestalten.</p>
-                        <button class="glow-button" onclick="toggleInfo(this)">
-                            <span>Mehr erfahren</span>
-                            <div class="button-bg"></div>
-                        </button>
-                        <div class="card-extra-info">
-                            <p>Wir denken voraus! Von der Einführung einer Schul-App über Nachhaltigkeitsprojekte bis hin zu neuen AG-Angeboten – wir suchen ständig nach Wegen, unsere Schule zukunftsfähig und attraktiver zu machen. Jede gute Idee ist willkommen!</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
+<nav>
+    <a href="#about">Über uns</a>
+    <a href="#team">Team</a>
+    <a href="#contact">Kontakt</a>
+</nav>
 
-            <section id="tasks" class="content-section">
-                <div class="section-header">
-                    <h2 class="section-title">Unsere Mission</h2>
-                    <div class="title-line"></div>
-                </div>
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-marker"></div>
-                        <div class="timeline-content">
-                            <h3>Schülerversammlungen organisieren</h3>
-                            <p>Wir planen und leiten regelmäßige Treffen, um eure Anliegen zu hören und gemeinsam Lösungen zu finden.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-marker"></div>
-                        <div class="timeline-content">
-                            <h3>Projekte umsetzen</h3>
-                            <p>Von Schulpartys über Spendenaktionen bis hin zu Umweltschutzinitiativen – wir machen es möglich.</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-marker"></div>
-                        <div class="timeline-content">
-                            <h3>Vermitteln und Helfen</h3>
-                            <p>Wir sind immer ansprechbar für Probleme und vermitteln vertraulich und fair bei Konflikten.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
+<div class="container">
 
-            <section id="contact" class="content-section">
-                <div class="section-header">
-                    <h2 class="section-title">Kommunikation</h2>
-                    <div class="title-line"></div>
-                </div>
-                <div class="contact-box">
-                    <p class="contact-intro">Du hast eine Idee, ein Problem oder ein Anliegen? Zögere nicht, uns zu kontaktieren!</p>
-                    <div class="contact-grid">
-                        <a href="mailto:vertrauensschueler@isarnwohld.org" class="contact-item">
-                            <span class="contact-icon">📧</span>
-                            <div class="contact-info">
-                                <strong>E-Mail</strong>
-                                <span>vertrauensschueler@isarnwohld.org</span>
-                            </div>
-                        </a>
-                        <div class="contact-item">
-                            <span class="contact-icon">📍</span>
-                            <div class="contact-info">
-                                <strong>Raum</strong>
-                                <span>M5</span>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <span class="contact-icon">📞</span>
-                            <div class="contact-info">
-                                <strong>Sprechstunde</strong>
-                                <span>Jede 2. Große Pause von Montag-Freitag</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </main>
-
-        <footer>
-            <p>&copy; 2026 Vertrauensschüler Team. Gemeinsam machen wir unsere Schule besser.</p>
-        </footer>
+    <div class="card" id="about">
+        <h2>Über uns</h2>
+        <p>Wir sind die Vertrauensschüler unserer Schule. Bei Problemen, Sorgen oder Ideen könnt ihr jederzeit zu uns kommen. Wir unterliegen der Schweigepflicht und hören euch einfach zu.</p>
     </div>
 
-    <script src="script.js"></script>
+    <div class="card" id="team">
+        <h2>Unser Team</h2>
+        <p>Diese Schülerinnen und Schüler sind aktuell für euch im Einsatz:</p>
+        <ul>
+            <li>Matthias von Kethelhodt</li>
+            <li>Daniel Hahn</li>
+            <li>Phillip Rüfer</li>
+            <li>Jakob Pammler</li>
+            <li>Shirin Sommerfeld</li>
+            <li>Mika Malmström</li>
+            <li>Thorun Born </li>
+            <li>Lukas Bebnitz</li>
+            <li>Melina Zimmermann</li>
+            <li>Hanna Oltmanns</li>
+            <li>Malia Menrath</li>
+        </ul>
+    </div>
+
+    <div class="card" id="contact">
+        <h2>Kontakt</h2>
+        <p><strong>Email:</strong> <span style="color: var(--accent-color);">streitschlichter@isarnwohld.org</span></p>
+        <br>
+        <p>Oder sprecht uns einfach in der Schule an! Ihr findet uns im <strong>Streischlichterraum</strong> in jeder großen Pause!</p>
+    </div>
+
+</div>
+
+<footer>
+    <p>© 2026 Vertrauensschüler | Gemeinschaftsschule Isarnwohld</p>
+</footer>
+
 </body>
 </html>
